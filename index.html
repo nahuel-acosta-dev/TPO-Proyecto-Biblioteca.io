@@ -5,11 +5,88 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <title>Document</title>
+    <link href="node_modules/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="static/css/styles.css">
+    <title>Libreria</title>
 </head>
 <body>
+    <header>
+          <nav class="navbar navbar-light bg-light">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#">
+                <img src="static/images/svg/bookshelves-1751335.svg" alt="" width="50" height="40" class="d-inline-block align-text-top">
+                    Libri
+              </a>
+            </div>
+          </nav>
+    </header>
+
+    <div id="container">
+        <section class="container cont-form">
+            <form class="row g-3" id="forma">
+                    <div class="col-md-4">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" placeholder="Elige el nombre de tu libro" value="">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="genero" class="form-label">Genero</label>
+                        <select id="genero" class="form-select" name="genero" required>
+                            <option selected disabled="true">Elige un Genero</option>
+                            <option value="terror">Terror</option>
+                            <option value="ficcion">Ciencia Ficcion</option>
+                            <option value="infantiles">Infantiles</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="autor" class="form-label">Autor</label>
+                        <input type="text" class="form-control" id="autor" placeholder="Nombe del autor" value="">
+                    </div>
+                        <div class="mb-3">
+                          <label for="descripcion" class="form-label">Description</label>
+                          <textarea class="form-control" id="descripcion" value="" placeholder="Descripcion de tu libro" required></textarea>
+                        </div>
+                        <div class="col-12">
+                            <button type="button" class="btn btn-danger" id="guardar">Guardar</button>
+                        </div>
+                    </form>
+                    <div class="mis-libros table-responsive">
+                        <div class="row text-center">
+                            <div class="col">
+                                <div class="card text-white bg-dark title">
+                                    <h3 class="card-title">Terror</h3>
+                                </div>
+                                <div id="terror">
+
+                                </div>
+                                    
+                              </div>
+                            <div class="col">
+                                <div class="card text-white bg-dark title">
+                                    <h3>Ciencia Ficcion</h3>
+                                </div>
+                                <div id="ficcion">
+
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card text-white bg-dark title">
+                                    <h3>Infantiles</h3>
+                                </div>
+                                <div id="infantiles">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+    </div>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="node_modules/popper.js/dist/popper.min.js"></script>
+    <script src="node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
+    <script src="static/js/libro.js"></script>
+    <script src="static/js/terror.js"></script>
+    <script src="static/js/ficcion.js"></script>
+    <script src="static/js/infantiles.js"></script>
     <script src="static/js/script.js"></script>
 </body>
 </html>

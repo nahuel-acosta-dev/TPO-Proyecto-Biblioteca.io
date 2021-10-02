@@ -1,0 +1,54 @@
+body {
+  background-image: url("../images/books-g99d1711bc_1920.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+.cont-form {
+  padding: 20px 10px 10px 10px;
+  background-color: bisque;
+  margin-top: 100px;
+  margin-bottom: 0px;
+}
+
+.mis-libros {
+  max-height: 300px;
+  margin-top: 50px;
+  margin-bottom: 0px;
+}
+
+.etiquetas {
+  font-weight: bold;
+}
+
+.describes {
+  padding: 0px 20px 0px 20px;
+}
+
+.title {
+  margin-top: 0px;
+  margin-bottom: 20px;
+}
+
+i {
+  margin-left: 10px;
+}
+
+.mi-button {
+  background-color: transparent;
+  outline: none;
+}
+
+.mi-button:focus {
+  box-shadow: none;
+  border: none;
+}
+
+.activa {
+  color: aquamarine;
+}
+
+.inactiva {
+  color: cornsilk;
+}

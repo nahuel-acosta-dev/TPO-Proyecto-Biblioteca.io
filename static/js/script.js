@@ -18,9 +18,9 @@ document.getElementById("guardar").addEventListener('click', () =>{
     agregarLibro();
 })
 
-const crearLibro = (nombre , libro)=>{
+const crearLibro = (nombre,libro)=>{
     let terrorHtml = `<div class="card text-white bg-danger mb-3 caracteristicas">
-    <button class="btn mi-button" id="${nombre}${libro.id}" onclick="estadoColor(${libro.id})" value="off">Sin Leer<i class="bi bi-book-half inactiva"></i></button>
+    <button class="btn mi-button" id="${nombre}${libro.id}" onclick="estado${nombre}(${libro.id})" value="off">Sin Leer<i class="bi bi-book-half inactiva"></i></button>
     <p><span class="etiquetas">Libro:</span>${libro.nombre}</p>
     <p><span class="etiquetas">Autor:</span>${libro.autor}</p>
     <p><span class="etiquetas">Descripcion:</span></p>
@@ -31,33 +31,28 @@ const crearLibro = (nombre , libro)=>{
     return terrorHtml;
 }
 
-/*----------------------------------------------------------------------*/
+const cambiarEstado = (estado)=>{
+    if(estado.value === "off"){
+        estado.value = "on";
+        estado.innerHTML = 'Leido<i class="bi bi-book activa"></i>';}
+    else{
+        estado.value = "off";
+        estado.innerHTML = 'Sin Leer<i class="bi bi-book-half inactiva"></i>'
+    }
 
+}
+/*----------------------------------------------------------------------*/
 
 /*---------------Libro Terror------------------*/
 
 const cargarLibroTerror = ()=>{
     let libroHtml = "";
     for(libro of terror){
-        libroHtml += crearLibro("colorTerror",libro);
+        libroHtml += crearLibro("ColorTerror",libro);
     }
 
     document.getElementById("terror").innerHTML = libroHtml;
 }
-
-
-/*const crearLibroTerror = (libro)=>{
-    let terrorHtml = `<div class="card text-white bg-danger mb-3 caracteristicas" >
-    <button class="btn mi-button" id="colorTerror${libro.id}" onclick="estadoColor(${libro.id})" value="off">Sin Leer<i class="bi bi-book-half inactiva"></i></button>
-    <p><span class="etiquetas">Libro:</span>${libro.nombre}</p>
-    <p><span class="etiquetas">Autor:</span>${libro.autor}</p>
-    <p><span class="etiquetas">Descripcion:</span></p>
-    <p class="card-body describes">${libro.descripcion}</p>
-    <button type="button" class="btn btn-warning" onclick="eliminarLibroTerror(${libro.id})">Eliminar</button>
-</div>
-`
-    return terrorHtml;
-}*/
 
 const eliminarLibroTerror = (id)=>{
     let indiceEliminar = terror.findIndex(libroTerror => libroTerror.id === id);
@@ -66,19 +61,12 @@ const eliminarLibroTerror = (id)=>{
     guardarTerror();
 }
 
-const estadoColor = (id)=>{
-    let estado = document.getElementById(`colorTerror${id}`);
-    if(estado.value === "off"){
-        estado.value = "on";
-        estado.innerHTML = 'Leido<i class="bi bi-book activa"></i>';}
-    else{
-        estado.value = "off";
-        estado.innerHTML = 'Sin Leer<i class="bi bi-book-half inactiva"></i>'
-    }
+const estadoColorTerror = (id)=>{
+    let estado = document.getElementById(`ColorTerror${id}`);
+    cambiarEstado(estado);
 }
-
 const guardarTerror = ()=>{
- localStorage.setItem("terror", JSON.stringify(terror))
+    localStorage.setItem("terror", JSON.stringify(terror))
 }
 
 /*-----------------------------------------*/
@@ -88,24 +76,10 @@ const guardarTerror = ()=>{
 const cargarLibroFiccion = ()=>{
     let libroHtml = "";
     for(libro of ficcion){
-        libroHtml += crearLibroFiccion(libro);
+        libroHtml += crearLibro("ColorFiccion",libro);
     }
 
     document.getElementById("ficcion").innerHTML = libroHtml;
-}
-
-
-const crearLibroFiccion = (libro)=>{
-    let ficcionHtml = `<div class="card text-white bg-danger mb-3 caracteristicas" id="${libro.id}">
-    <button class="btn mi-button" id="colorFiccion${libro.id}" onclick="estadoColorFiccion(${libro.id})" value="off">Sin Leer<i class="bi bi-book-half inactiva"></i></button>
-    <p><span class="etiquetas">Libro:</span>${libro.nombre}</p>
-    <p><span class="etiquetas">Autor:</span>${libro.autor}</p>
-    <p><span class="etiquetas">Descripcion:</span></p>
-    <p class="card-body describes">${libro.descripcion}</p>
-    <button type="button" class="btn btn-warning" onclick="eliminarLibroFiccion(${libro.id})">Eliminar</button>
-</div>
-`
-    return ficcionHtml;
 }
 
 const eliminarLibroFiccion = (id)=>{
@@ -116,14 +90,8 @@ const eliminarLibroFiccion = (id)=>{
 }
 
 const estadoColorFiccion = (id)=>{
-    let estado = document.getElementById(`colorFiccion${id}`);
-    if(estado.value === "off"){
-        estado.value = "on";
-        estado.innerHTML = 'Leido<i class="bi bi-book activa"></i>';}
-    else{
-        estado.value = "off";
-        estado.innerHTML = 'Sin Leer<i class="bi bi-book-half inactiva"></i>'
-    }
+    let estado = document.getElementById(`ColorFiccion${id}`);
+    cambiarEstado(estado);
 }
 
 const guardarFiccion = ()=>{
@@ -138,23 +106,10 @@ const guardarFiccion = ()=>{
 const cargarLibroInfantiles = ()=>{
     let libroHtml = "";
     for(libro of infantiles){
-        libroHtml += crearLibroInfantiles(libro);
+        libroHtml += crearLibro("ColorInfantiles",libro);
     }
 
     document.getElementById("infantiles").innerHTML = libroHtml;
-}
-
-const crearLibroInfantiles = (libro)=>{
-    let infantilesHtml = `<div class="card text-white bg-danger mb-3 caracteristicas" id="${libro.id}">
-    <button class="btn mi-button" id="colorInfantiles${libro.id}" onclick="estadoColorInfantiles(${libro.id})" value="off">Sin Leer<i class="bi bi-book-half inactiva"></i></button>
-    <p><span class="etiquetas">Libro:</span>${libro.nombre}</p>
-    <p><span class="etiquetas">Autor:</span>${libro.autor}</p>
-    <p><span class="etiquetas">Descripcion:</span></p>
-    <p class="card-body describes">${libro.descripcion}</p>
-    <button type="button" class="btn btn-warning" onclick="eliminarLibroInfantiles(${libro.id})">Eliminar</button>
-</div>
-`
-    return infantilesHtml;
 }
 
 const eliminarLibroInfantiles = (id)=>{
@@ -165,14 +120,8 @@ const eliminarLibroInfantiles = (id)=>{
 }
 
 const estadoColorInfantiles = (id)=>{
-    let estado = document.getElementById(`colorInfantiles${id}`);
-    if(estado.value === "off"){
-        estado.value = "on";
-        estado.innerHTML = 'Leido<i class="bi bi-book activa"></i>';}
-    else{
-        estado.value = "off";
-        estado.innerHTML = 'Sin Leer<i class="bi bi-book-half inactiva"></i>'
-    }
+    let estado = document.getElementById(`ColorInfantiles${id}`);
+    cambiarEstado(estado);
 }
 
 const guardarInfantiles = ()=>{
@@ -182,7 +131,6 @@ const guardarInfantiles = ()=>{
 
 
 let agregarLibro = ()=>{
-
     let forma = document.forms["forma"];
     let nombre = forma["nombre"];
     let autor = forma["autor"];

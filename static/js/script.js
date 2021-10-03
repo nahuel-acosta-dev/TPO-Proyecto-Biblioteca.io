@@ -18,17 +18,17 @@ document.getElementById("guardar").addEventListener('click', () =>{
     agregarLibro();
 })
 
-const crearLibro = (nombre,libro)=>{
-    let terrorHtml = `<div class="card text-white bg-danger mb-3 caracteristicas">
+const crearLibro = (nombre,eliminar,libro)=>{
+    let Html = `<div class="card text-white bg-danger mb-3 caracteristicas">
     <button class="btn mi-button" id="${nombre}${libro.id}" onclick="estado${nombre}(${libro.id})" value="off">Sin Leer<i class="bi bi-book-half inactiva"></i></button>
     <p><span class="etiquetas">Libro:</span>${libro.nombre}</p>
     <p><span class="etiquetas">Autor:</span>${libro.autor}</p>
     <p><span class="etiquetas">Descripcion:</span></p>
     <p class="card-body describes">${libro.descripcion}</p>
-    <button type="button" class="btn btn-warning" onclick="eliminarLibroTerror(${libro.id})">Eliminar</button>
+    <button type="button" class="btn btn-warning" onclick="eliminar${eliminar}(${libro.id})">Eliminar</button>
 </div>
 `
-    return terrorHtml;
+    return Html;
 }
 
 const cambiarEstado = (estado)=>{
@@ -48,7 +48,7 @@ const cambiarEstado = (estado)=>{
 const cargarLibroTerror = ()=>{
     let libroHtml = "";
     for(libro of terror){
-        libroHtml += crearLibro("ColorTerror",libro);
+        libroHtml += crearLibro("ColorTerror","LibroTerror",libro);
     }
 
     document.getElementById("terror").innerHTML = libroHtml;
@@ -76,7 +76,7 @@ const guardarTerror = ()=>{
 const cargarLibroFiccion = ()=>{
     let libroHtml = "";
     for(libro of ficcion){
-        libroHtml += crearLibro("ColorFiccion",libro);
+        libroHtml += crearLibro("ColorFiccion","LibroFiccion",libro);
     }
 
     document.getElementById("ficcion").innerHTML = libroHtml;
@@ -106,7 +106,7 @@ const guardarFiccion = ()=>{
 const cargarLibroInfantiles = ()=>{
     let libroHtml = "";
     for(libro of infantiles){
-        libroHtml += crearLibro("ColorInfantiles",libro);
+        libroHtml += crearLibro("ColorInfantiles","LibroInfantiles",libro);
     }
 
     document.getElementById("infantiles").innerHTML = libroHtml;
@@ -127,6 +127,7 @@ const estadoColorInfantiles = (id)=>{
 const guardarInfantiles = ()=>{
     localStorage.setItem("infantiles", JSON.stringify(infantiles))
 };
+
 /*-----------------------------------------*/
 
 
